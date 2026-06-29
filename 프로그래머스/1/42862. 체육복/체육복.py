@@ -1,30 +1,12 @@
 def solution(n, lost, reserve):
-    lost.sort()
-    reserve.sort()
     
-    giver = []
-    receiver = [] 
+    _lost = [l for l in lost if not l in reserve]
+    _reserve = [r for r in reserve if not r in lost]
     
-    for i in lost:
-        for j in reserve:
-            if (i == j):
-                receiver.append(i)
-                giver.append(i)
-                break 
-        
-    for i in lost:
-        if i not in receiver:
-            for j in reserve:
-                if j not in giver:
-                    if (i - 1 == j):
-                        receiver.append(i)
-                        giver.append(j)
-                        break 
-                    if (i + 1 == j):
-                        receiver.append(i)
-                        giver.append(j)
-                        break 
-                        
-    answer = n - len(lost) + len(receiver)
-    
-    return answer
+    for student in sorted(_reserve):
+        if student - 1 in _lost:
+            _lost.remove(student - 1)
+        elif student + 1 in _lost:
+            _lost.remove(student + 1) 
+
+    return n - len(_lost) 
