@@ -1,12 +1,12 @@
 def solution(s):
-    stack = []
+    count = 0
 
     for ch in s:
         if ch == '(':
-            stack.append(ch)
+            count += 1
         else:
-            if not stack:
+            count -= 1
+            if count < 0:
                 return False
-            stack.pop()
 
-    return len(stack) == 0
+    return count == 0
