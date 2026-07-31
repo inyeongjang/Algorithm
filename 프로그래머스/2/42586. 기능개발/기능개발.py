@@ -1,21 +1,24 @@
+import math 
+
 def solution(progresses, speeds):
     
     answer = []
+    days = []
     
-    while progresses:
-        
-        count = len(progresses)
-        
-        for i in range(count):
-            progresses[i] += speeds[i] 
-        
-        r_progresses = progresses[::-1]
-        
-        for i in range(count):
-            if all(x >= 100 for x in r_progresses[i:]):
-                answer.append(count - i)
-                del progresses[:count - i]
-                del speeds[:count - i]
-                break
+    for p, s in zip(progresses, speeds):
+        days.append(math.ceil((100 - p) / s))
+
+    count = 1
+    current = days[0]
+    
+    for i in range(1, len(days)):
+        if current < days[i]:
+            answer.append(count)
+            count = 1
+            current = days[i]
+        else:
+            count += 1 
+    
+    answer.append(count)
                 
     return answer
