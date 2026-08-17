@@ -1,4 +1,6 @@
-from collections import deque
+# 시간 복잡도 : O(n²), 공간 복잡도 : O(n)
+
+from collections import deque 
 
 def solution(begin, target, words):
     
@@ -24,7 +26,7 @@ def solution(begin, target, words):
         
         for i in range(len(words)):
             if not visited[i] and can_change(current, words[i]):
-                visited[i] = True
-                queue.append((words[i], steps + 1))
+                    visited[i] = True 
+                    queue.append((words[i], steps + 1))   
     
     return 0
