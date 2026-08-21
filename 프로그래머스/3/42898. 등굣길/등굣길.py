@@ -12,4 +12,4 @@ def solution(m, n, puddles):
 
             dp[y][x] = dp[y - 1][x] + dp[y][x - 1]
 
-    return dp[y][x] % 1000000007
+    return dp[n][m] % 1000000007
